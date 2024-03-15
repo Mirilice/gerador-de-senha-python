@@ -1,0 +1,26 @@
+import string
+import random
+from colorama import init, Fore
+
+init()
+cod = 0
+senha = ''
+
+while(True):
+ show_menu()
+ cod = int(input())
+ try:
+   if (cod == 1):
+    criar_senha()
+   elif (cod == 2):
+    senha = input("Digite a senha a ser tratada:")
+    tratar_senha(senha)
+   elif (cod == 3):
+    senha = input("Digite a senha a ser verificada:")
+    verifica_senha(senha)
+   elif (cod == 4):
+    break
+   else:
+    print("Opção inválida!")
+ except ValueError:
+   print("Digite um número válido!")
