@@ -4,20 +4,20 @@ from colorama import init, Fore
 
 init()
 cod = 0
-senha = ''
+pass = ''
 
 while(True):
  show_menu()
  cod = int(input())
  try:
    if (cod == 1):
-    criar_senha()
+    creat_pass()
    elif (cod == 2):
-    senha = input("Digite a senha a ser tratada:")
-    tratar_senha(senha)
+    pass = input("Digite a senha a ser tratada:")
+    treat_pass(pass)
    elif (cod == 3):
-    senha = input("Digite a senha a ser verificada:")
-    verifica_senha(senha)
+    pass = input("Digite a senha a ser verificada:")
+    verify_pass(pass)
    elif (cod == 4):
     break
    else:
