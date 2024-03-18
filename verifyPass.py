@@ -8,6 +8,6 @@ def verify_pass(senha):
             re.search(r'[a-z]', senha) and
             re.search(r'\d', senha) and
             re.search(r'[!@#$%^&*()_+{}|:"<>?]', senha)):
-        print("Senha válida!")
+        return True
     else:
-        print("Senha inválida!")
+        return False
