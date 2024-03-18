@@ -1,10 +1,21 @@
 import string
 import random
 from colorama import init, Fore
+import re
 
 init()
 cod = 0
 pass = ''
+
+def verify_pass(pass):
+    if (re.search(r'.{8,}', pass) and
+            re.search(r'[A-Z]', pass) and
+            re.search(r'[a-z]', pass) and
+            re.search(r'\d', pass) and
+            re.search(r'[!@#$%^&*()_+{}|:"<>?]', pass)):
+        print("Senha válida!")
+    else:
+        print("Senha inválida!")
 
 while(True):
  show_menu()
