@@ -7,15 +7,15 @@ init()
 cod = 0
 pass = ''
 
-def verify_pass(pass):
-    if (re.search(r'.{8,}', pass) and
-            re.search(r'[A-Z]', pass) and
-            re.search(r'[a-z]', pass) and
-            re.search(r'\d', pass) and
-            re.search(r'[!@#$%^&*()_+{}|:"<>?]', pass)):
-        print("Senha válida!")
+def verify_pass(senha):
+    if (re.search(r'.{8,}', senha) and
+            re.search(r'[A-Z]', senha) and
+            re.search(r'[a-z]', senha) and
+            re.search(r'\d', senha) and
+            re.search(r'[!@#$%^&*()_+{}|:"<>?]', senha)):
+        return True
     else:
-        print("Senha inválida!")
+        return False
 
 while(True):
  show_menu()
