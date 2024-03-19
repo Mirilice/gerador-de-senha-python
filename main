@@ -18,7 +18,6 @@ def verify_password(password):
             re.search(r'[a-z]', password) and
             re.search(r'\d', password) and
             re.search(r'[!@#$%^&*()_+{}|:"<>?]', password)):
-            print("Sua senha é forte!")    
             return True
     else:
         print ("Sua senha é fraca!")
