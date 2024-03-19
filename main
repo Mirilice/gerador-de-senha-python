@@ -1,37 +1,71 @@
 import string
 import random
-from colorama import init, Fore
 import re
 
-init()
-cod = 0
-pass = ''
 
-def verify_pass(senha):
-    if (re.search(r'.{8,}', senha) and
-            re.search(r'[A-Z]', senha) and
-            re.search(r'[a-z]', senha) and
-            re.search(r'\d', senha) and
-            re.search(r'[!@#$%^&*()_+{}|:"<>?]', senha)):
+cod = 0
+password = ""
+size = 8
+
+def create_password(size):
+    caracters = string.ascii_letters + string.digits + string.punctuation
+    password = ''.join(random.choice(caracters) for _ in range(size))
+    return password
+
+def verify_password(password):
+    if (re.search(r'.{8,}', password) and
+            re.search(r'[A-Z]', password) and
+            re.search(r'[a-z]', password) and
+            re.search(r'\d', password) and
+            re.search(r'[!@#$%^&*()_+{}|:"<>?]', password)):
         return True
     else:
         return False
+    
+def treat_password(password):
+  if verify_password(password):
+    password += random.choice(string.ascii_uppercase + 
+                          string.ascii_lowercase + 
+                          string.digits + string.punctuation) 
+    return password 
+  elif not re.search(r'[A-Z]', password):
+    password += random.choice(string.ascii_uppercase)
+  elif not re.search(r'[a-z]', password):
+    password += random.choice(string.ascii_lowercase)
+  elif not re.search(r'\d', password):
+    password += random.choice(string.digits) 
+  elif not re.search(r'[!@#$%^&*()_+{}|:"<>?]', password):
+    password += random.choice(string.poctuation)
+  return password
+
+def show_menu(cod):
+  print("1 - Criar uma senha segura?") 
+  print("2 - Melhorar segurança da   senha?")
+  print("3 - Verificar segurança da senha?")
+  print("4 - sair do sistema?")
+  return int(input("Selecione uma opção:"))
 
 while(True):
- show_menu()
- cod = int(input())
+ option = show_menu(cod)
+ 
  try:
-   if (cod == 1):
-    creat_pass()
-   elif (cod == 2):
-    pass = input("Digite a senha a ser tratada:")
-    treat_pass(pass)
-   elif (cod == 3):
-    pass = input("Digite a senha a ser verificada:")
-    verify_pass(pass)
-   elif (cod == 4):
+   if (option == 1):
+    print(create_password(size))
+   elif ( option == 2):
+    password = input("Digite a senha a ser tratada:")
+    print(treat_password(password))
+   elif (option == 3):
+    password = input("Digite a senha a ser verificada:")
+    if verify_password(password):
+      print("Sua senha é forte!")
+    else: ("Sua senha é fraca!")
+   elif (option == 4):
     break
    else:
     print("Opção inválida!")
  except ValueError:
    print("Digite um número válido!")
+
+
+            
+            
