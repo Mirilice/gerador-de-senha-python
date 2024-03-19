@@ -18,25 +18,19 @@ def verify_password(password):
             re.search(r'[a-z]', password) and
             re.search(r'\d', password) and
             re.search(r'[!@#$%^&*()_+{}|:"<>?]', password)):
-        return True
+            print("Sua senha é forte!")    
+            return True
     else:
+        print ("Sua senha é fraca!")
         return False
     
 def treat_password(password):
-  if verify_password(password):
-    password += random.choice(string.ascii_uppercase + 
-                          string.ascii_lowercase + 
-                          string.digits + string.punctuation) 
-    return password 
-  elif not re.search(r'[A-Z]', password):
-    password += random.choice(string.ascii_uppercase)
-  elif not re.search(r'[a-z]', password):
-    password += random.choice(string.ascii_lowercase)
-  elif not re.search(r'\d', password):
-    password += random.choice(string.digits) 
-  elif not re.search(r'[!@#$%^&*()_+{}|:"<>?]', password):
-    password += random.choice(string.poctuation)
-  return password
+    while not verify_password(password):
+        password += random.choice(string.ascii_uppercase + 
+                                  string.ascii_lowercase + 
+                                  string.digits + 
+                                  string.punctuation)
+    return password
 
 def show_menu(cod):
   print("1 - Criar uma senha segura?") 
@@ -53,7 +47,10 @@ while(True):
     print(create_password(size))
    elif ( option == 2):
     password = input("Digite a senha a ser tratada:")
-    print(treat_password(password))
+    if (verify_password(password) == True):
+        print("A senha é forte o suficiente!")
+    else:    
+        print(treat_password(password))
    elif (option == 3):
     password = input("Digite a senha a ser verificada:")
     if verify_password(password):
@@ -65,7 +62,6 @@ while(True):
     print("Opção inválida!")
  except ValueError:
    print("Digite um número válido!")
-
 
             
             
